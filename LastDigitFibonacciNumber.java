@@ -5,13 +5,13 @@ public class LastDigitFibonacciNumber {
         //fibonacci sequence, dato un n calcola il F_n, una volta trovato trova solo l'ultimo digit/char di quel result.
         //this va bene solo fino a n circa 10^6, per after usa 'Esponenziazione per matrici' / fasterer Pisano Period(ONLY IF u have modulo m≤ 10³)
         Scanner input = new Scanner(System.in);
-        long n = input.nextLong();
+        long n = input.nextLong();  //use primitives x speed
         if(n==0){System.out.println(0);}
         else if(n==1){System.out.println(1);}
         else {
             long slow = 0L;
             long fast = 1L;
-            for(long i=2; i<=n; i++){  //long!
+            for(long i=2; i<=n; i++){  //long! O(n)
                 long x = slow + fast;
                 slow = fast;
                 fast = x;

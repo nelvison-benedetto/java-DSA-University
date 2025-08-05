@@ -6,7 +6,7 @@ public class FibonacciNumber {
         //fibonacci sequence, dato un n calcola il F_n. 
         //this va bene solo fino a n circa 10^6, per after usa 'Esponenziazione per matrici' / fasterer Pisano Period(ONLY IF u have modulo m≤ 10³)
         Scanner input = new Scanner(System.in);
-        long n = input.nextLong();
+        long n = input.nextLong();  //use primitives x speed
         if(n==0){System.out.println(0);}
         else if(n==1){System.out.println(1);}
         else{
