@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class LastDigitSumFibonacciNumber {
     public static void main(String[] args) {
+        //dato un n, calcola tutti i F_0 -> F_n, e del result pero (visto che puo essere un numero lunghissimo),
+        //si vuole solo l'ultima cifra decimale
         Scanner input = new Scanner(System.in);
         long n = input.nextLong();
         long m = 10;  //xk mi chiede solo 
