@@ -7,7 +7,7 @@ public class GreatestCommonDivisor {
         long a = input.nextLong();
         long b = input.nextLong();
 
-        //apply formula Euclid:  GCD(a,b) == GCD(b,a%b) uso ricorsione fino a quando uno dei due numeri non è ==0 allora return l'altro.
+        //🔥apply formula Euclid:  GCD(a,b) == GCD(b,a%b) uso ricorsione fino a quando uno dei due numeri non è ==0 allora return l'altro.
         System.out.println(calcGCD(a, b));    
         input.close();
 
