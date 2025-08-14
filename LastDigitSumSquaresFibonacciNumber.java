@@ -10,7 +10,7 @@ public class LastDigitSumSquaresFibonacciNumber {
         Scanner input = new Scanner(System.in);
         long n = input.nextLong();
 
-        int period = getPisanoPeriod(10);
+        int period = getPisanoPeriod(10);  //la variabile period per modulo 10 è sempre 60! cmnq per leggibilita la calcolo cmnq
         //riduci n e n+1 al pisanoperiod
         int n_mod = (int)(n % period);
         int n1_mod = (int)((n + 1) % period);
@@ -23,7 +23,7 @@ public class LastDigitSumSquaresFibonacciNumber {
         input.close();
     }
 
-    public static int getPisanoPeriod(long m){
+    public static int getPisanoPeriod(int m){
         long slow=0L, fast=1L, x;
         for(int i=0; i<m*m; i++){
             x = (slow+fast) % m;
@@ -34,7 +34,7 @@ public class LastDigitSumSquaresFibonacciNumber {
         return -1;
     }
 
-    public static int getFibonacciModule(long n, int mod){
+    public static int getFibonacciModule(int n, int mod){
         if (n <= 1)
             return n;
         int slow = 0, fast = 1, x;
