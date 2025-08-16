@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class SpeedingUpRandomizedQuickSort {
     public static void main(String[] args) {
         //classico esempio dove RandomizedQuickSort rallenta perche ci sono molti cloni

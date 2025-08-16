@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class CarFueling {
     public static void main(String[] args){
         //un' auto deve percorrere una distanza totale d da città A a città B.

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class MoneyChange {
     public static void main(String[] args) {
         //compute the minimum number of coins needed to change the given value into coins with denominations 1, 5, and 10.

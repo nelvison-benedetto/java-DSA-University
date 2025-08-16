@@ -1,3 +1,9 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.ArrayList;
+
 class Segment {
     int start, end;
     Segment(int s, int e) {

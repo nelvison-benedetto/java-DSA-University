@@ -1,3 +1,6 @@
+
+import java.util.Scanner;
+
 public class MajorityElement {
     public static void main(String[] args) {
         //Input: A sequence of n integers.

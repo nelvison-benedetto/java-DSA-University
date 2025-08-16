@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
 public class MaximumAdvertisementRevenue {
     public static void main(String[] args){
         //hai 2 sequenze di numeri interi positivi: Prezzi per click di ciascun inserzionista(price1,price2,...,pricen) 

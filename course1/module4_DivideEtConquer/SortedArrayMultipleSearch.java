@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class SortedArrayMultipleSearch {
     public static void main(String[] args) {
         //hai due array: K = array ordinato di n interi distinti e Q = array di m query

@@ -1,3 +1,7 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
 public class MaximumNumberOfPrizes {
     public static void main(String[] args) {
         //hai un numero n di caramelle e vuoi distribuirle in premi distinti

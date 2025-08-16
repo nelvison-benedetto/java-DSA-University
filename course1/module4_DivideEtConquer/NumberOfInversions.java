@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class NumberOfInversions {
     public static void main(String[] args) {
         //Input: A sequence of n integers a1, ..., an.

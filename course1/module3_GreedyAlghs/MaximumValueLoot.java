@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
 class Item {
     double value, weight;
     Item(double v, double w) {

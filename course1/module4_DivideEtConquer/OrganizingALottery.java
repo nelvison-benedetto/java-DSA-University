@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
 public class OrganizingALottery {
     public static void main(String[] args) {
         //Input: A list of segments and a list of points.

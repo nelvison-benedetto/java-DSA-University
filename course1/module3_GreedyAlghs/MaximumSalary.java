@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
 public class MaximumSalary {
     public static void main(String[] args) {
         //hai una lista di numeri positivi e vuoi comporre il numero più grande possibile concatenandoli

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class BinarySearchWithDuplicates {
     public static void main(String[] args) {
         //in input una sequenza di numeri(anche cloni) anche integer q.
