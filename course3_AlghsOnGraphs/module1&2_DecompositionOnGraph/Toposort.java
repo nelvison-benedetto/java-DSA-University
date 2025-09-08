@@ -2,16 +2,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Toposort {  //module2
+public class Toposort {  //MODULE 2
+    //topological sort usando DFS
     private static ArrayList<Integer> toposort(ArrayList<Integer>[] adj) {
         int used[] = new int[adj.length];
         ArrayList<Integer> order = new ArrayList<Integer>();
-        //write your code here
+        for (int v = 0; v < adj.length; v++) {
+            if (used[v] == 0) {
+                dfs(adj, used, order, v);
+            }
+        }
+        Collections.reverse(order); // invertiamo l’ordine finale
         return order;
     }
 
+
     private static void dfs(ArrayList<Integer>[] adj, int[] used, ArrayList<Integer> order, int s) {
-      //write your code here
+        used[v] = 1;
+        for (int neighbor : adj[v]) {
+            if (used[neighbor] == 0) {
+                dfs(adj, used, order, neighbor);
+            }
+        }
+        order.add(v); // aggiungiamo il nodo dopo aver visitato tutti i vicini
     }
 
     public static void main(String[] args) {

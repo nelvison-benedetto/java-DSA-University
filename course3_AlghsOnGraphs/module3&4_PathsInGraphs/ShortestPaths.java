@@ -1,9 +1,64 @@
 import java.util.*;
 
-public class ShortestPaths {
+public class ShortestPaths {  //MODULE 4, exchange money optimally
 
     private static void shortestPaths(ArrayList<Integer>[] adj, ArrayList<Integer>[] cost, int s, long[] distance, int[] reachable, int[] shortest) {
-      //write your code here
+      int n = adj.length;
+        distance[s] = 0;
+        reachable[s] = 1;
+        // Bellman-Ford base: n-1 rilassamenti
+        for (int i = 0; i < n - 1; i++) {
+            for (int u = 0; u < n; u++) {
+                if (distance[u] == Long.MAX_VALUE) continue;
+                for (int j = 0; j < adj[u].size(); j++) {
+                    int v = adj[u].get(j);
+                    long w = cost[u].get(j);
+                    if (distance[u] + w < distance[v]) {
+                        distance[v] = distance[u] + w;
+                        reachable[v] = 1;
+                    }
+                }
+            }
+        }
+        // Rilevamento dei cicli negativi
+        boolean[] inNegativeCycle = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            for (int u = 0; u < n; u++) {
+                if (distance[u] == Long.MAX_VALUE) continue;
+                for (int j = 0; j < adj[u].size(); j++) {
+                    int v = adj[u].get(j);
+                    long w = cost[u].get(j);
+                    if (distance[u] + w < distance[v]) {
+                        distance[v] = distance[u] + w;
+                        inNegativeCycle[v] = true;
+                    }
+                }
+            }
+        }
+        // Propagazione dei cicli negativi a tutti i vertici raggiungibili da essi
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            if (inNegativeCycle[i]) {
+                queue.add(i);
+                visited[i] = true;
+            }
+        }
+        while (!queue.isEmpty()) {
+            int u = queue.poll();
+            shortest[u] = 0; // nessun cammino minimo valido
+            for (int v : adj[u]) {
+                if (!visited[v]) {
+                    queue.add(v);
+                    visited[v] = true;
+                    shortest[v] = 0;
+                }
+            }
+        }
+        // Impostiamo reachable a 1 per tutti i vertici raggiungibili
+        for (int i = 0; i < n; i++) {
+            if (distance[i] != Long.MAX_VALUE) reachable[i] = 1;
+        }
     }
 
     public static void main(String[] args) {

@@ -1,8 +1,33 @@
 import java.util.*;
 
-public class Dijkstra {
+public class Dijkstra {  //MODULE 4, minimum cost of a flight
+    //calcola il costo minimo di un volo in un grafo diretto con pesi non negativi, puoi usare l’algoritmo di Dijkstra
     private static long distance(ArrayList<Integer>[] adj, ArrayList<Integer>[] cost, int s, int t) {
-        return -1;
+        int n = adj.length;
+        long[] dist = new long[n];
+        Arrays.fill(dist, Long.MAX_VALUE);
+        dist[s] = 0;
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingLong(a -> a[1]));
+        pq.add(new int[]{s, 0});
+
+        while (!pq.isEmpty()) {
+            int[] current = pq.poll();
+            int v = current[0];
+            long d = current[1];
+
+            if (d > dist[v]) continue;
+
+            for (int i = 0; i < adj[v].size(); i++) {
+                int u = adj[v].get(i);
+                long w = cost[v].get(i);
+                if (dist[v] + w < dist[u]) {
+                    dist[u] = dist[v] + w;
+                    pq.add(new int[]{u, (int) dist[u]});
+                }
+            }
+        }
+        return dist[t] == Long.MAX_VALUE ? -1 : dist[t];
     }
 
     public static void main(String[] args) {

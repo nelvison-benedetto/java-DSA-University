@@ -1,12 +1,22 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Reachability {  //module1
-    private static int reach(ArrayList<Integer>[] adj, int x, int y) {
-        //write your code here
-        return 0;
-    }
+public class Reachability {  //MODULE 1
+    //uso di semplice DFS per verificare se esiste un percorso tra i due nodi.
 
+    private static int reach(ArrayList<Integer>[] adj, int x, int y) {
+        boolean[] visited = new boolean[adj.length];
+        dfs(adj, x, visited);
+        return visited[y] ? 1 : 0;
+    }
+    private static void dfs(ArrayList<Integer>[] adj, int v, boolean[] visited) {
+        visited[v] = true;
+        for (int neighbor : adj[v]) {
+            if (!visited[neighbor]) {
+                dfs(adj, neighbor, visited);
+            }
+        }
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

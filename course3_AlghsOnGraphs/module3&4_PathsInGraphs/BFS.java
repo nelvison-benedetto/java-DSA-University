@@ -3,10 +3,32 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class BFS {
+public class BFS {  //MODULE 3
+    //calcola la distanza minima in un grafo non orientato, puoi usare BFS a partire dal nodo sorgente s.
     private static int distance(ArrayList<Integer>[] adj, int s, int t) {
-        //write your code here
-        return -1;
+        int n = adj.length;
+        int[] dist = new int[n];
+        for (int i = 0; i < n; i++) {
+            dist[i] = -1; // inizialmente tutti i nodi non raggiunti
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(s);
+        dist[s] = 0;
+
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            for (int neighbor : adj[v]) {
+                if (dist[neighbor] == -1) {
+                    dist[neighbor] = dist[v] + 1;
+                    queue.add(neighbor);
+                    if (neighbor == t) {
+                        return dist[neighbor]; // abbiamo raggiunto il nodo destinazione
+                    }
+                }
+            }
+        }
+        return dist[t]; // se dist[t] = -1, il nodo t non è raggiungibile
     }
 
     public static void main(String[] args) {
