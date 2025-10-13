@@ -27,7 +27,7 @@ public class MoneyChange {
           //o anche solo count += num;
         return count;
 
-        //solution by me O(n)
+        //solution 100% by me O(n)
         // int x = 1;
         // int y = 5;
         // int z = 10;

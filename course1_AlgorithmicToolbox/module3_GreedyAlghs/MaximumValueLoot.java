@@ -17,7 +17,7 @@ public class MaximumValueLoot {
         //puoi prendere frazioni di obj 0<=f_i<=1, non solo interi
         //vuoi massimizzare il valore dello zaino
 
-        // Scanner input = new Scanner(System.in);  //solution by AI
+        // Scanner input = new Scanner(System.in);  //solution naive AI
         // int n = input.nextInt();
         // double W = input.nextDouble();
         // Item[] items = new Item[n];
@@ -41,6 +41,7 @@ public class MaximumValueLoot {
     
     }
 
+    //PERFECT SOLUTION!!!
     static class Item {
         int value;
         int weight;
@@ -53,7 +54,6 @@ public class MaximumValueLoot {
             return (double) value / weight;
         }
     }
-    //PERFECT SOLUTION!!!
     public static double getMaxLootValue(int ncouples, int capacity, int[] weights, int[] values){
         List<Item> items = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -81,7 +81,7 @@ public class MaximumValueLoot {
     }
 
 
-    // public static double getMaxLootValue(int ncouples, int capacity, int[] weights, int[] values){  //WRONG non sono proprio riuscito a risolverlo da solo 10/12/2025
+    // public static double getMaxLootValue(int ncouples, int capacity, int[] weights, int[] values){  //WRONG(not perfect direction) non ultimato
     //     //gli items sono limitati, e puoi prender anche e.g. 1/3 di un item.
     //     List<Integer> valuesOrdered = new ArrayList<>( Arrays.stream(values).boxed().collect(Collectors.toList()) );
     //     List<Integer> weightsOrderedbyV = new ArrayList<>( Arrays.stream(values).boxed().collect(Collectors.toList()) );
