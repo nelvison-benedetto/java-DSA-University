@@ -43,11 +43,34 @@ public class MajorityElement {
     //     return count > arr.length / 2;
     // }
 
-    public static int getMajorityElement(int[] sequence){
-
-        
-
+    //PERFECT SOLUTION!!!semplicemente sort e poi fai un For e count quanti sono ==sequence[n/2], infine se count>n/2 allora return 1
+    public static int getCheckMajorityItemExists(int[] sequence){ //O(n log n)
+        //return 1 se c'è 1 item che ha cloni >sequence/2, altrimenti 0.
+        Arrays.sort(sequence);  //O(n log n)
+        int n = sequence.length;
+        int count =0;
+        //int candidate = sequence[n/2];  //possibile num most common
+        for(int item : sequence){  //O(n)
+            if(item==sequence[n/2]) count++;
+        }
+        return count > n/2? 1 : 0;
     }
 
+    // public static int getCheckMajorityItemExists(int[] sequence){  //WRONG(not perfect direction), solution not correct xk e.g.[2222333888] pensa di si perche 3==3==3 ma in realta 2 è better, e problemi sui bordi
+    //     //return 1 se c'è 1 item che ha cloni >sequence/2, altrimenti 0.
+    //     int n = sequence.length;
+    //     Arrays.sort(sequence);
+    //     int mid = n/2;
+    //     // if(n%2==0){
+    //     //     if(sequence[mid]==sequence[mid-1]) return 1;   //sequence[mid] sarebbe proprio il box che esce dalla meta esatta sx e va in sezione dx
+    //     //     else return 0;
+    //     // }
+    //     // else{
+    //     //     if(sequence[mid]==sequence[mid-1]) return 1;  //sequence[mid] qua è 
+    //     //     else return 0;
+    //     // }
+    //     if(sequence[mid]==sequence[mid-1] || sequence[mid]==sequence[mid+1]) return 1;  //se sequence è pari o dispari non cambia logica
+    //     else return 0;
+    // }
 
 }
