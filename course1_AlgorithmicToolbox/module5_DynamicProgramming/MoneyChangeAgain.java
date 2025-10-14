@@ -22,30 +22,30 @@ public class MoneyChangeAgain {
         // System.out.println(dp[money]);
     }
 
-    public static int calculateMinCoinsBestMethod(int num){
-        //e.g.money = 6, greedy → 4 + 1 + 1 = 3 monete, ma la soluzione ottimale è 3 + 3 = 2 monete !
-        
+    public static int calculateMinCoinsBestMethod(int money){
+        //e.g.money=6, greedy → 4 + 1 + 1 = 3 monete, ma la soluzione ottimale è 3 + 3 = 2 monete !
+        //minCoins[6]=2 cioe per fare money 6 servono 2 monete
     int[] coins = {1, 3, 4};  //coins utilizzabili, sono infinite
-    //array per memorizzare la soluzione per ogni valore da 0 a money
-    int[] minCoins = new int[money + 1];
-    // Base case: 0 monete per cambiare 0
-    minCoins[0] = 0;
-    // Calcoliamo la soluzione per tutti gli importi da 1 a money
-    for (int m = 1; m <= money; m++) {
-        // inizializza con un valore grande
-        minCoins[m] = Integer.MAX_VALUE;
-        // prova tutte le monete disponibili
-        for (int coin : coins) {
-            if (m - coin >= 0) {
-                int candidate = minCoins[m - coin] + 1;
-                if (candidate < minCoins[m]) {
-                    minCoins[m] = candidate;
+    int[] minCoins = new int[money + 1];  //arr per memorizzare la soluzione per ogni valore da 0 a money
+    minCoins[0] = 0;  //0 monete per cambiare 0
+    for(int m=1; m<money+1; m++){  //check tutte i subint di money
+        minCoins[m] = Integer.MAX_VALUE;  //inizializzi item con un valore grande, se candidate sara piu piccolo allora lo editi 
+        for(int coin : coins){  //prova tutte le coins disponibili
+            if(m-coin >= 0){  //serve per non andare fuori arr minCoins!! e.g m=1 coin=3 allora false e non entra nella condition!
+                int candidate = minCoins[m-coin] + 1;  //[m-coin] per trovare lo slot, quindi semplicemente aumenti di 1 il valore in quello slot
+                //dunque ora candidate è il num di monete this.coin per formare this.m
+                if(candidate < minCoins[m]){  //edita solo le la sol è inferiore alla sol gia trovata per questo slot
+                    minCoins[m] = candidate; 
                 }
             }
         }
     }
-    // Il valore ottimale per "money" è ora in minCoins[money]
-    return minCoins[money];
+    //alcuni slots di minCoins rimmarranno cmnq con Integer.MAX_VALUE
+    return minCoins[money];  //il valore ottimale per "money" è ora in minCoins[money] cioe l'ultimo cycle m che ha runnato.
+
+    
+    //e.g. money=7
+    //coin1: candidate[1-1]
 
     //greedy algh
     // int x= 4;
