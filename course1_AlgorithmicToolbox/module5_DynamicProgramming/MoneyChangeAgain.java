@@ -22,6 +22,7 @@ public class MoneyChangeAgain {
         // System.out.println(dp[money]);
     }
 
+    //PERFCECT SOLUTION!!!
     public static int calculateMinCoinsBestMethod(int money){
         //e.g.money=6, greedy → 4 + 1 + 1 = 3 monete, ma la soluzione ottimale è 3 + 3 = 2 monete !
         //minCoins[6]=2 cioe per fare money 6 servono 2 monete
@@ -43,7 +44,7 @@ public class MoneyChangeAgain {
     //alcuni slots di minCoins rimmarranno cmnq con Integer.MAX_VALUE
     return minCoins[money];  //il valore ottimale per "money" è ora in minCoins[money] cioe l'ultimo cycle m che ha runnato.
 
-    
+
     //e.g. money=7
     //coin1: candidate[1-1]
 
