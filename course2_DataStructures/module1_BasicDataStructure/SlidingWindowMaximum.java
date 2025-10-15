@@ -24,6 +24,12 @@ public class SlidingWindowMaximum {
     //     maxSlidingWindowNaive(A, w);
     // }
 
-    
+    public static int[] slidingWindowMaximum(int n, int[] array, int m){  //n is array.length, m is windows length
+
+        return new int[0];
+
+    }
 
 }
+
+
