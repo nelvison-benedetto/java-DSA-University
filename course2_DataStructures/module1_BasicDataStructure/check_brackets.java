@@ -72,7 +72,7 @@ public class check_brackets{
             idx++;  //xk uso here 1-based
             if(c!=')' && c!='(' && c!=']' && c!='[' && c!='}' && c!='{') continue;
             if(map.containsKey(c)){
-                if(stack.isEmpty() || map.get(c) != stack.pop().getKey() ){
+                if(stack.isEmpty() || map.get(c) != stack.pop().getKey() ){  //METTERLO SEMPRE stack.isEmpty() XK PER FARE .POP DEVE ESSERE !empty !!
                     return "error at " + idx;  //è stata rilevata una ),],}, ma non è stata trovata la sua corrispondente apertura, quindi errore!
                 }
             }
