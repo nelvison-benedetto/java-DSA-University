@@ -24,9 +24,28 @@ public class SlidingWindowMaximum {
     //     maxSlidingWindowNaive(A, w);
     // }
 
-    public static int[] slidingWindowMaximum(int n, int[] array, int m){  //n is array.length, m is windows length
+    public static int[] slidingWindowMaximum(int n, int[] array, int m){  //array is ordered descending, n is array.length, m is windows length
 
-        return new int[0];
+        if (array==null || n==0 || m==0 || m>n) return new int[0];
+        int[] result = new int[n-m+1];  //ricorda che la window scorre di 1,  e 'n-m+1' == 'm<=n'
+        Deque<Integer> queue = new ArrayDeque<>(); //per gli idxs
+          //quindi in pratica la queue lavora come windows, immagina come testa di un serpente rivolta verso il basso
+        for(int i=0; i<n; i++){
+            //rimuovi indici fuori dalla finestra (troppo a sinistra)
+            while(!queue.isEmpty() && queue.peekFirst() <= i-m){  //quindi 'i-m' rappresenta lo space a fuori a sx della window/il bordo della window
+                queue.pollFirst();
+            }
+            //rimuovi indici dalla coda del serpente, in base al loro value se sono <= al nuovo elemento
+            while(!queue.isEmpty() && array[queue.peekLast()] <= array[i]) {
+                queue.pollLast();
+            }
+            queue.offerLast(i);  //aggiungi l’indice corrente
+            //registra il massimo quando la finestra è piena
+            if( i >= m-1 ){  //la prima window COMPLETA arriva quando i==m-1 (0-based), quindi non puoi salvare in result[] quando sei ai 'i' inferiori della lenght della window
+                result[i-m+1] = array[queue.peekFirst()];  //il box target in result è i-m+1
+            }
+        }
+        return result;
 
     }
 
