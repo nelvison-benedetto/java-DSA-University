@@ -25,6 +25,7 @@ public class MoneyChange {
         num = num%5;
         count = count + num/1;  //prendi max pezzi da 1
           //o anche solo count += num;
+        num = num%5;  //posso anche non farlo cmnq voglio che si capisca
         return count;
 
         //solution 100% by me O(n)

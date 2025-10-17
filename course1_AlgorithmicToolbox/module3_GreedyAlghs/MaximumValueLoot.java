@@ -61,7 +61,7 @@ public class MaximumValueLoot {
         }  
         //ora hai una list di Items, in cui per ognuno puoi call valuePerWeight per ottenere il suo rapporto value/weight
         //Ordina per valore/peso decrescente
-        items.sort((a, b) -> Double.compare(b.valuePerWeight(), a.valuePerWeight()));  //ordina gli items per il loro rapporto value/weight
+        items.sort((a, b) -> Double.compare(b.valuePerWeight(), a.valuePerWeight()));  //ordina gli items desc per il loro rapporto value/weight
         double totalValue = 0.0;
         double currentWeight = 0.0;
         for(Item item : items){
