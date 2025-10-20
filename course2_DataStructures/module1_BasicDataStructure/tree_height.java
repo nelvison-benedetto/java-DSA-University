@@ -105,9 +105,22 @@ public class tree_height {
             if(parent[i] == -1){  //se ricevi un -1 in input per convezione è la root
                 root = i;  //setto puntatore root
             } else {
-                children.get( parent[i] ).add(i); //get dynamicarr target che è dentro macrodynamicarr, e ci aggiungo dentro un item
-            } //quindi primo slot di macrodynamicarr contiene dynamicarr con 1 item=0, il secondo slot di macrodynamicarr contiene dynamicarr con 1 item=1, ect
+                children.get( parent[i] ).add(i);
+            }
         }
+        //e.g. parent=[4,-1,4,1,1] -> children=[ [], [], [], [], [] ] -> 
+          //i=0, parent[0]=4, (il padre del nodo 0 è 4) children.get(4).add(0) -> children = [ [], [], [], [], [0] ]
+          //i=1, parent[1]=-1, quindi root=1
+          //i=2, parent[2]=4, (il padre del nodo 2 è 4) children.get(4).add(2) -> children = [ [], [], [], [], [0, 2] ]
+          //i=3, parent[3]=1, (il padre del nodo 3 è 1) children.get(1).add(3) -> children = [ [], [3], [], [], [0, 2] ]
+          //i=4, parent[4]=1, (il padre del nodo 4 è 1) children.get(1).add(4) -> children = [ [], [3,4], [], [], [0, 2] ]
+        //(root) 1
+        //  ├── 3
+        //  └── 4
+        //       ├── 0
+        //       └── 2
+        //Height = 3
+        
         //🔥🔥BFS iterativa!! con DFS con n grande (>10^5) puoi avere error StackOverflowError
         Queue<int[]> queue = new ArrayDeque<>();  //coda, cioe 'serpente' rivolto verso il basso
         queue.add( new int[]{ root,1 } );  //starting  {nodo, altezza_corrente}, x questo avresto cnhe potuto usare custom class NodeState{ int node, depth;}, ma cosi con int[] è piu pratico e performante
