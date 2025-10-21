@@ -24,25 +24,28 @@ public class SlidingWindowMaximum {
     //     maxSlidingWindowNaive(A, w);
     // }
 
+    //PERFECT SOLUTION!!! O(n)
     public static int[] slidingWindowMaximum(int n, int[] array, int m){  //array is ordered descending, n is array.length, m is windows length
-
-        if (array==null || n==0 || m==0 || m>n) return new int[0];
-        int[] result = new int[n-m+1];  //ricorda che la window scorre di 1,  e 'n-m+1' == 'm<=n'
-        Deque<Integer> queue = new ArrayDeque<>(); //per gli idxs
-          //quindi in pratica la queue lavora come windows, immagina come testa di un serpente rivolta verso il basso
-        for(int i=0; i<n; i++){
+        // per ogni windows voglio salvare il max item in slot in arr result
+        if( array==null || n==0 || m==0 || m>n ) return new int[0];
+        int[] result = new int[n-m+1];  //ricorda che la window scorre di 1, e 'n-m+1' == 'm<=n'
+        Deque<Integer> queue = new ArrayDeque<>(); //doublequeue per gli idxs, qua teniamo gli idxs in ordine desc per valore della window cosi peekFirst() get the bigger item
+          //quindi in pratica la queue lavora come windows, immagina come serpente a due teste
+        for( int i=0; i<n; i++ ){
             //rimuovi indici fuori dalla finestra (troppo a sinistra)
             while(!queue.isEmpty() && queue.peekFirst() <= i-m){  //quindi 'i-m' rappresenta lo space a fuori a sx della window/il bordo della window
-                queue.pollFirst();
+                queue.pollFirst();  //pollFirst() return item before remove
             }
-            //rimuovi indici dalla coda del serpente, in base al loro value se sono <= al nuovo elemento
-            while(!queue.isEmpty() && array[queue.peekLast()] <= array[i]) {
+            //rimuovi indici da testa dx serpente, in base al loro value se sono <= al nuovo elemento
+            while( !queue.isEmpty() && array[ queue.peekLast() ] <= array[i] ){ 
+                //confronto actual smallest (queue.peakLast()) in window, se esso è <= di item che stiamo per aggiungere, eliminalo e cycle again. 
+                //🔥COSI LA DOUBLEQUEUE MANTIENE ORDER DESC 
                 queue.pollLast();
             }
-            queue.offerLast(i);  //aggiungi l’indice corrente
+            queue.addLast(i);  //offerLast() try to add item se non riesce return false
             //registra il massimo quando la finestra è piena
             if( i >= m-1 ){  //la prima window COMPLETA arriva quando i==m-1 (0-based), quindi non puoi salvare in result[] quando sei ai 'i' inferiori della lenght della window
-                result[i-m+1] = array[queue.peekFirst()];  //il box target in result è i-m+1
+                result[i-m+1] = array[ queue.peekFirst() ];  //il box target in result è i-m+1
             }
         }
         return result;
@@ -50,5 +53,3 @@ public class SlidingWindowMaximum {
     }
 
 }
-
-
