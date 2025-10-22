@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-public class MergingTables {
+public class DisjoinSetUnion_PathCompression_howMergingTables {
 
     // private final InputReader reader;
     // private final OutputWriter writer;
