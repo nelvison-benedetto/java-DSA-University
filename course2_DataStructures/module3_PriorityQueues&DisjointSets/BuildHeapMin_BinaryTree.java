@@ -105,7 +105,7 @@ public class BuildHeapMin_BinaryTree {
             siftDown( i, arr );
         }
     }
-    //e.g.🔥🔥 BINARY TREE HEAP MIN-HEAP
+    //e.g.🔥🔥 BINARY MIN-HEAP (BINARY TREE)
     //index:  0  1  2  3  4  5  6
     //value: [A, B, C, D, E, F, G]
     //           A(0)
@@ -116,7 +116,7 @@ public class BuildHeapMin_BinaryTree {
     //quindi per nodo i: figlio let → idx 2*i+1, figlio right → idx 2*i+2, father → idx (i-1)/2 no float
 
     static void siftDown( int i, int[] array ){  
-        //chiamato anche 'HEAPIFY'(used also in BINARY (TREE) HEAP) x maxheap cioe ogni nodo è minore(/uguale) dei suoi figli
+        //chiamato anche 'HEAPIFY', here is min-heap cioe ogni parent è minore(/uguale) dei suoi figli
         //se array[i] è più grande di uno dei suoi figli, lo scambiamo con il figlio più piccolo e ripetiamo ricorsivamente sul nuovo indice.
         int minIndex = i;  //iniziamo presupponendo che il nodo parent sia gia il min value, poi...
         int left = 2*i+1; //idx target figlio sx in un heap 0-based
