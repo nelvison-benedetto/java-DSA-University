@@ -102,6 +102,7 @@ public class DisjoinSetUnion_PathCompression_howMergingTables {
     //     }
     // }
 
+    //PERFECT SOLUTION!!! O(n)
     //uso Disjoint-Set Union (DSU)(anche detto union-field) xk ogni insieme è rappresentato come un piccolo albero ed ogni nodo punta al suo genitore fino ad arrivare alla radice.
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
