@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class JobQueue {
+public class PriorityQueue {
 
     // private int numWorkers;
     // private int[] jobs;
@@ -84,6 +84,7 @@ public class JobQueue {
     //     }
     // }
 
+    //PEFECT SOLUTION!!! O(m log n) (priorityqueue è o(log n) ma poi la fai per ogni job m quindi total o(m log n))
     //assegnazione di m job a n thread (worker) paralleli. Per ogni job stampa id_thread(idx del thread che segue this job), start_time(sec quando il job incomincia)
     //i thread prendono i job nell'ordine dato, se più thread sono liberi nello stesso istante vince quello con id più piccolo, un thread non interrompe un job iniziato.
     public static void main( String[] args ){
