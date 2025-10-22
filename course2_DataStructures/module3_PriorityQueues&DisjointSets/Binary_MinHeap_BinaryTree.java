@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class BuildHeapMin_BinaryTree {
+public class Binary_MinHeap_BinaryTree {
 
     // private int[] data;
     // private List<Swap> swaps;
