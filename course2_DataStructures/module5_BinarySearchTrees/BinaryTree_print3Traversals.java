@@ -112,17 +112,18 @@ public class BinaryTree_print3Traversals {
     // 1   3
     //return print tree nei 3 metodi di attraversamento(traversal): in-order, pre-order, post-order
     //1 2 3 4 5  ,  4 2 1 3 5  ,  1 3 2 5 4
+    static Node[] tree;
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader( new InputStreamReader(System.in) ); //lettore di testo per read input faster than classic Scanner
         int n = Integer.parseInt( in.readLine() );  //tot nodes
-        tree = new Node[n];  //arr di Node di legth n
+        tree = new Node[n];  //staticarr con n slots, ognuno puo puntare ad un obj Node
         // Lettura dell’albero
-        for( int i=0; i<n; i++ ){
+        for( int i=0; i<n; i++ ){  //read n rows in input, ciascuna con i dati x 1 node
             String[] parts = in.readLine().split(" ");
             int key = Integer.parseInt( parts[0] );
             int left = Integer.parseInt( parts[1] );
             int right = Integer.parseInt( parts[2] );
-            tree[i] = new Node( key, left, right );
+            tree[i] = new Node( key, left, right );  //create&save new node in slot arr
         }
         // Traversal
         List<Integer> inorder = inOrder(0);
@@ -133,7 +134,6 @@ public class BinaryTree_print3Traversals {
         printList(preorder);
         printList(postorder);
     }
-    static Node[] tree;
     static class Node {  //class Obj
         int key;
         int left;
@@ -197,7 +197,5 @@ public class BinaryTree_print3Traversals {
         }
         System.out.println();
     }
-
-
 
 }
