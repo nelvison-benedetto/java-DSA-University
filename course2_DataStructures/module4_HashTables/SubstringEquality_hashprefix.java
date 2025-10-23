@@ -91,8 +91,7 @@ public class SubstringEquality_hashprefix {
         }
         out.flush();  //svuota il buffer
     }
-    // Fast input (evita Time Limit Exceeded)
-    static class FastScanner {  //xk BufferedReader+StringTokenizer è molto più veloce di Scanner per input grandi
+    static class FastScanner {  //xk BufferedReader+StringTokenizer è molto più veloce di Scanner per input grandi, ed eviti Time Limit Exceeded
         BufferedReader br;
         StringTokenizer st;
         FastScanner(){ 
