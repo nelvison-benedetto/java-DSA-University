@@ -118,7 +118,7 @@ public class alghRabinKarp_StringMatchingUsingHashing {
         }
         return result;
     }
-    static final long P = 1_000_000_007L;  //modulo primo grande, per avoid collisions&overflow
+    static final long P = 1_000_000_007L;  //modulo primo big big, per avoid collisions&overflow
     static final long X = 263L;  //moltiplicatore di base
     // Calcola hash di una stringa (highest-power-first)
     static long polyHash( String s ){  //costruisce l’hash x target pattern nella forma highest-power-first
