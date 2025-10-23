@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-public class PhoneBook {
+public class HashTable_PhoneBook_nonecessaryhashingfunct {
 
     // private FastScanner in = new FastScanner();
     // private PrintWriter out = new PrintWriter(System.out);
@@ -85,6 +85,9 @@ public class PhoneBook {
     //     }
     // }
 
+    //PERFECT SOLUTION!!! O(n)
+    //hashtable associa chiave->valore quickly: here key is idx e valore is value.
+    //immagina armadio con 10M cassetti, per ogni cassetto l'idx rappresenta il numero di telefono mentre il value rappresenta nome contatto rubrica e.g.'AAA_MySelf'
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt(); //tot ops
