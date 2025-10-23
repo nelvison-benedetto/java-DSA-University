@@ -87,6 +87,7 @@ public class LongestCommonSubstring_hashing {
     //     new CommonSubstring().run();
     // }
 
+    //TODO better notes
     //PERFECT SOLUTION!!!  O((∣s∣+∣t∣) ⋅ log(min(∣s∣,∣t∣)))s
     //dopo la binary search, il valore L massimo trovato sarà la lunghezza della più lunga sottostringa comune, return also le posizioni i e j salvate durante il check.
     public static void main(String[] args) throws IOException {
@@ -136,9 +137,9 @@ public class LongestCommonSubstring_hashing {
         }
         return new int[]{ bestI, bestJ, bestLen };
     }
-    static final long P1 = 1_000_000_007L;
-    static final long P2 = 1_000_000_009L;
-    static final long X = 263L;
+    static final long P1 = 1_000_000_007L;  //module primo big big, riduce possibilita collisions
+    static final long P2 = 1_000_000_009L;  //module primo big big, riduce possibilita collisions
+    static final long X = 263L;  //moltiplicatore di base
     static void precompute( String s, long[] h1, long[] h2, long[] xp1, long[] xp2 ){
         int n = s.length();
         if( xp1[0] == 0 ) xp1[0] = xp2[0] = 1;
