@@ -1,1 +1,2 @@
 ## Data Structures & Algorithms Specialization | University of California San Diego
+Greedy Algorithms, Divide Et Conquer, Dynamic Programming, Data Structure, Algorithms on Graphs, Algorithms on Strings, Advanced Algorithms.
