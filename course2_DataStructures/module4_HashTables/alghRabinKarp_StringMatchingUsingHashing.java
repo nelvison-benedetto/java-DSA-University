@@ -85,6 +85,9 @@ public class alghRabinKarp_StringMatchingUsingHashing {
     //     }
     // }
 
+    //PERFECT SOLUTION!!! 
+    //naive O(n*m) confronta pattern con ogni posizione nel testo carattere per carattere
+    //!!RobinKarp O(n+m) usa hash per confronti O(1), poi controlla solo in caso di match di hash!
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String pattern = sc.next();  //text target da trovare all'interno della stringa molto lunga
