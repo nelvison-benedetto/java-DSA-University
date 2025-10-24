@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class BinaryTree_print3Traversals {
+public class BinaryTree_3Traversals {
     
     // class FastScanner {
     //     StringTokenizer tok = new StringTokenizer("");
@@ -100,11 +100,11 @@ public class BinaryTree_print3Traversals {
     //5 -1 -1
     //1 -1 -1
     //3 -1 -1
-    //Nodo 0: key=4, left=1, right=2
-    //Nodo 1: key=2, left=3, right=4
-    //Nodo 2: key=5, left=-1, right=-1
-    //Nodo 3: key=1, left=-1, right=-1
-    //Nodo 4: key=3, left=-1, right=-1
+    //Node0:  key=4, left=node1, right=node2
+    //Node1:  key=2, left=node3, right=node4
+    //Node2:  key=5, left=-1, right=-1
+    //Node3:  key=1, left=-1, right=-1
+    //Node4:  key=3, left=-1, right=-1
     //      4
     //     / \
     //    2   5
@@ -125,6 +125,13 @@ public class BinaryTree_print3Traversals {
             int right = Integer.parseInt( parts[2] );
             tree[i] = new Node( key, left, right );  //create&save new node in slot arr
         }
+        if( n==0 ){
+            // stampa tre righe vuote (o come richiesto)
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            return;
+        }
         // Traversal
         List<Integer> inorder = inOrder(0);
         List<Integer> preorder = preOrder(0);
@@ -144,49 +151,51 @@ public class BinaryTree_print3Traversals {
             this.right = right;
         }
     }
-    // --- IN-ORDER ITERATIVO ---
+    // --- IN-ORDER (read Left→Node→Right), ITERATIVO ---
     static List<Integer> inOrder( int root ){
         List<Integer> res = new ArrayList<>();
-        Stack<Integer> stack = new Stack<>();
+        Deque<Integer> stack = new ArrayDeque<>();  //doublequeue we use only Last
         int current = root;
-        while( current!=-1 || !stack.isEmpty() ){
+        while( current!=-1 || !stack.isEmpty() ){  //baste che anche solo 1 di queste 2 condition sia true, che il cycle start
             while( current!=-1 ){
-                stack.push(current);
-                current = tree[current].left;
+                stack.addLast(current);
+                current = tree[current].left;  //update reference
             }
-            current = stack.pop();
-            res.add( tree[current].key );
-            current = tree[current].right;
+            //stack ha immagazzinato tutti i nodes da cui siamo passati,
+            //ora current points to nullnode left figlio di node real lowest-leftest in the tree.
+            current = stack.removeLast();  //update current con l'ultimo item added in the stack: cioe node real piu in basso a sx nel tree
+            res.add( tree[current].key );  //lo aggiungiamo alla risposta
+            current = tree[current].right;  //ci spostiamo sul ramo dx e ripetiamo()
         }
         return res;
     }
-    // --- PRE-ORDER ITERATIVO ---
+    // --- PRE-ORDER (read Node→Left→Right), ITERATIVO ---
     static List<Integer> preOrder( int root ){
         List<Integer> res = new ArrayList<>();
-        Stack<Integer> stack = new Stack<>();
-        stack.push(root);
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.addLast(root);
         while( !stack.isEmpty() ){
-            int node = stack.pop();
-            res.add(tree[node].key);
-            if( tree[node].right!=-1 ) stack.push( tree[node].right );
-            if( tree[node].left!=-1 ) stack.push( tree[node].left );
+            int node = stack.removeLast();
+            res.add( tree[node].key );  //add in res
+            if( tree[node].right!=-1 ) stack.addLast( tree[node].right );  //add first right xk we are using stack LIFO, quindi left verra ESTRATTO prima di right!
+            if( tree[node].left!=-1 ) stack.addLast( tree[node].left );
         }
         return res;
     }
-    // --- POST-ORDER ITERATIVO ---
+    // --- POST-ORDER (Left→Right→Node), ITERATIVO ---
     static List<Integer> postOrder( int root ){
         List<Integer> res = new ArrayList<>();
-        Stack<Integer> stack1 = new Stack<>();
-        Stack<Integer> stack2 = new Stack<>();
-        stack1.push(root);
+        Deque<Integer> stack1 = new ArrayDeque<>();
+        Deque<Integer> stack2 = new ArrayDeque<>();
+        stack1.addLast(root);
         while( !stack1.isEmpty() ){
-            int node = stack1.pop();
-            stack2.push(node);
-            if( tree[node].left!=-1 ) stack1.push( tree[node].left );
-            if( tree[node].right!=-1 ) stack1.push( tree[node].right );
+            int node = stack1.removeLast();
+            stack2.addLast(node);  //e.g.se il tree sono 3 nodes(parent,left,right): added here in order parent(1st cycle)->right(2nd cycly)->left(3rd cycle)
+            if( tree[node].left!=-1 ) stack1.addLast( tree[node].left );  //add first right xk we are using stack LIFO, quindi left verra ESTRATTO prima di right!
+            if( tree[node].right!=-1 ) stack1.addLast( tree[node].right );
         }
         while( !stack2.isEmpty() ){
-            res.add( tree[stack2.pop()].key );
+            res.add( tree[stack2.removeLast()].key );  //estrae & aggiunge in res in order left->right->parent, ok!!!
         }
         return res;
     }
