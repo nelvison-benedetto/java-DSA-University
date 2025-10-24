@@ -117,22 +117,21 @@ public class BinaryTree_3Traversals {
         BufferedReader in = new BufferedReader( new InputStreamReader(System.in) ); //lettore di testo per read input faster than classic Scanner
         int n = Integer.parseInt( in.readLine() );  //tot nodes
         tree = new Node[n];  //staticarr con n slots, ognuno puo puntare ad un obj Node
-        // Lettura dell’albero
         for( int i=0; i<n; i++ ){  //read n rows in input, ciascuna con i dati x 1 node
             String[] parts = in.readLine().split(" ");
             int key = Integer.parseInt( parts[0] );
             int left = Integer.parseInt( parts[1] );
             int right = Integer.parseInt( parts[2] );
-            tree[i] = new Node( key, left, right );  //create&save new node in slot arr
+            tree[i] = new Node( key, left, right );  //create&save new node in slot staticarr
         }
         if( n==0 ){
-            // stampa tre righe vuote (o come richiesto)
+            //print 3 empty rows
             System.out.println();
             System.out.println();
             System.out.println();
             return;
         }
-        // Traversal
+        //traversals
         List<Integer> inorder = inOrder(0);
         List<Integer> preorder = preOrder(0);
         List<Integer> postorder = postOrder(0);

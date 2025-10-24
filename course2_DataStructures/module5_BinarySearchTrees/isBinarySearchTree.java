@@ -79,21 +79,21 @@ public class isBinarySearchTree {
     //return res 'CORRECT' se il tree dato ripetta le proprieta del BT( per ogni parent left>parent && right<parent), altrimenti return res 'INCORRECT'
     static Node[] tree;
     public static void main(String[] args) throws IOException {
-        BufferedReader in = new BufferedReader( new InputStreamReader(System.in) );
-        int n = Integer.parseInt( in.readLine() );
-        if( n==0 ){ // Albero vuoto è sempre corretto
+        BufferedReader in = new BufferedReader( new InputStreamReader(System.in) ); //lettore di testo per read input faster than classic Scanner
+        int n = Integer.parseInt( in.readLine() );  //tot nodes
+        if( n==0 ){ //tree vuoto è sempre corretto
             System.out.println("CORRECT");
             return;
         }
-        tree = new Node[n];
-        for( int i=0; i<n; i++ ){
+        tree = new Node[n];  //staticarr con n slots, ognuno puo puntare ad un obj Node
+        for( int i=0; i<n; i++ ){  //read n rows in input, ciascuna con i dati x 1 node
             String[] parts = in.readLine().split(" ");
             int key = Integer.parseInt( parts[0] );
             int left = Integer.parseInt( parts[1] );
             int right = Integer.parseInt( parts[2] );
-            tree[i] = new Node( key, left, right );
+            tree[i] = new Node( key, left, right );  //create&save new node in slot staticarr
         }
-        if( isBST(0, Long.MIN_VALUE, Long.MAX_VALUE) )
+        if( isBST(0, Long.MIN_VALUE, Long.MAX_VALUE) )  //for starting use root idx, enormous numb min, enormous numb max
             System.out.println("CORRECT");
         else
             System.out.println("INCORRECT");
@@ -108,17 +108,13 @@ public class isBinarySearchTree {
             this.right = right;
         }
     }
-    // Funzione ricorsiva per controllare se il sottoalbero è BST
-    static boolean isBST( int nodeIndex, long min, long max ){
+    static boolean isBST( int nodeIndex, long min, long max ){  //check se subtree is BST(follows the conditions)
         if( nodeIndex==-1 )
             return true; // nodo vuoto: sempre valido
         Node node = tree[nodeIndex];
-        // Condizione di validità per un BST
-        if( node.key<=min || node.key>=max )
-            return false;
-        // Controlla ricorsivamente i figli
-        return isBST( node.left, min, node.key )
-            && isBST( node.right, node.key, max );
+        if( node.key<=min || node.key>=max ) return false;  //se activated allora violazione condition di validità per un BST! return false.
+        return isBST( node.left, min, node.key )  //subtree sx deve avere tutte le keys in intervallo (min, node.key)
+            && isBST( node.right, node.key, max );  //subtree dx deve avere tutte le keys in intervallo (node.key, max)
     }
 
 }
