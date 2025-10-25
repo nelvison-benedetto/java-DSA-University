@@ -237,13 +237,18 @@ public class SetWithRangeSum {
     //     return nextToken().charAt(0);
     // }
 
-    //PERFECT SOLUTION!!! 
-    //Splay Tree x 
+    //PERFECT SOLUTION!!! O(n)
+    //Splay Tree (ipotizzato best tree in assoluto): dopo ogni operazione (search/insert/delete/split/merge) di nodo x, fai rotazioni per spostarlo in cima al tree. //processo 'splaying', cosi la prossima volta lo trovi piu velocemente (piu vicino alla root è il target desiderato meno complexity!!)
+    //lo splaying(portare X alla root) di solito lo fai alla fine della funct.
+    //è cache-friendly e user-oriented quindi no bisogno bilanciamento.
+    static long lastSum = 0;  //risultato dell'ultima op rangeSum()
+    static final long M = 1_000_000_001L;  //modulo 
+    static Vertex root = null;  //root dello Splay Tree (inizialmente null)
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        int n = sc.nextInt();  // tot ops
         for( int i=0; i<n; i++ ){
-            String op = sc.next();
+            String op = sc.next(); //op: ?/+/-/s
             if( op.equals("?") ){
                 long iVal = ( sc.nextLong() + lastSum ) % M;
                 System.out.println( find(iVal) ? "Found" : "Not found" );
@@ -256,16 +261,13 @@ public class SetWithRangeSum {
             } else if ( op.equals("s") ){
                 long l = ( sc.nextLong() + lastSum ) % M;
                 long r = ( sc.nextLong() + lastSum ) % M;
-                long s = rangeSum(l, r);
+                long s = rangeSum(l, r);  //run funct rangeSum() w the 2 inputs
                 System.out.println(s);
                 lastSum = s;
             }
         }
     }
-    static final long M = 1_000_000_001L;
-    static Vertex root = null;
-    static long lastSum = 0;
-    static class Vertex {
+    static class Vertex {  //class Obj, node dello splay tree contains: key, sum(sum all keys in the subtree, always updated), left right parent are the pointers
         long key, sum;
         Vertex left, right, parent;
         Vertex( long key ){
@@ -273,8 +275,8 @@ public class SetWithRangeSum {
             this.sum = key;
         }
     }
-    static long sum( Vertex v ) { return v == null ? 0 : v.sum; }
-    static void update( Vertex v ){
+    static long sum( Vertex v ) { return v == null ? 0 : v.sum; }  //return la somma del subtree (return 0 if null).
+    static void update( Vertex v ){  //ricalcola v.sum e aggiorna i puntatori parent dei figli (importante dopo rotazioni / merge / split).
         if( v==null ) return;
         v.sum = v.key + sum(v.left) + sum(v.right);
         if( v.left != null ) v.left.parent = v;
@@ -284,7 +286,7 @@ public class SetWithRangeSum {
     // (omesse qui per brevità, ma posso scrivertele complete se vuoi)
 
     // ---- Operazioni principali ----
-    static void add(long key) {
+    static void add(long key) {  //TODO
         // evita duplicati, poi inserisci come nel BST e splay
     }
 
