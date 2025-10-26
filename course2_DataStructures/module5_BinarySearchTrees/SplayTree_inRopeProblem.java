@@ -162,7 +162,7 @@ public class SplayTree_inRopeProblem {
     //     out.close();
     // }
 
-    //PERFECT SOLUTION!!!
+    //PERFECT SOLUTION!!! complexity O((n+q)* log n)
     //Rope is data structure x per strs, che permette di fare cut concatenate split in O(log n) tempo!
       //implementabile w SplayTree or Treap, dove ogni node contiene char/smallsubstr and dimension subtree (numero di caratteri totali)
     //

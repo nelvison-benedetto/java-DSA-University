@@ -237,10 +237,13 @@ public class SetWithRangeSum {
     //     return nextToken().charAt(0);
     // }
 
+    
     //PERFECT SOLUTION!!! O(n)
     //Splay Tree (ipotizzato best tree in assoluto): dopo ogni operazione (search/insert/delete/split/merge) di nodo x, fai rotazioni per spostarlo in cima al tree. //processo 'splaying', cosi la prossima volta lo trovi piu velocemente (piu vicino alla root è il target desiderato meno complexity!!)
     //lo splaying(portare X alla root) di solito lo fai alla fine della funct.
     //è cache-friendly e user-oriented quindi no bisogno bilanciamento.
+
+    //complete SplayTree in 'SplayTree_inRopeProblem'
     static long lastSum = 0;  //risultato dell'ultima op rangeSum()
     static final long M = 1_000_000_001L;  //modulo 
     static Vertex root = null;  //root dello Splay Tree (inizialmente null)
