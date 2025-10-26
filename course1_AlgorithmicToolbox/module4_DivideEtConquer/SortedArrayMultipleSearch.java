@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class SortedArrayMultipleSearch {
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
         //hai due array: K = array ordinato di n interi distinti e Q = array di m query
         //per ogni elemento q in Q, devi verificare se esiste in K. Se sì, restituisci l’indice in K, altrimenti -1.
         //l’array K è ordinato
@@ -36,31 +36,77 @@ public class SortedArrayMultipleSearch {
     //         }
     //     }
     //     return -1; //not found
-    }
+    // }
 
-    //PERFECT SOLUTION!! 99% by me!!!
-    public static int[] findIndicesInSortedArray( int[] numstofind, int[] sortedarr ){
-        //return arr con in slot index dell num trovato altrimenti -1
-        int[] res = new int[numstofind.length];
-        for(int i=0; i<res.length; i++){
-            res[i] = binary_search_returnIdx(numstofind[i], sortedarr);
+    //by me
+    // public static int[] findIndicesInSortedArray( int[] numstofind, int[] sortedarr ){
+    //     //return arr con in slot index dell num trovato altrimenti -1
+    //     int[] res = new int[numstofind.length];
+    //     for(int i=0; i<res.length; i++){
+    //         res[i] = binary_search_returnIdx(numstofind[i], sortedarr);
+    //     }
+    //     return res;
+    // }
+    // public static int binary_search_returnIdx(int target, int[] arr){  //O(log n)
+    //     int left = 0;
+    //     int right = arr.length-1;
+    //     boolean isFound = false;
+    //     while(left<=right && !isFound){
+    //         int mid = (left+right)/2;  //remember to sum!!
+    //         if(arr[mid] == target) {
+    //             isFound = true;
+    //             return mid;
+    //         }
+    //         else if(arr[mid]<target) left= mid+1;
+    //         else right=mid-1;
+    //     }
+    //     return -1;
+    // }
+
+    //PERFECT SOLUTION!!!
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+
+        // 1️⃣ Leggi n e array K
+        int n = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+        int[] K = new int[n];
+        for (int i = 0; i < n; i++) {
+            K[i] = Integer.parseInt(st.nextToken());
         }
-        return res;
+
+        // 2️⃣ Leggi m e array Q
+        int m = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+        int[] Q = new int[m];
+        for (int i = 0; i < m; i++) {
+            Q[i] = Integer.parseInt(st.nextToken());
+        }
+
+        // 3️⃣ Usa StringBuilder per costruire output efficiente
+        StringBuilder sb = new StringBuilder();
+
+        // 4️⃣ Per ogni query, cerca in K
+        for (int q : Q) {
+            int res = binarySearch(K, q);
+            sb.append(res).append(" ");
+        }
+
+        // 5️⃣ Stampa risultato finale
+        System.out.println(sb.toString().trim());
     }
-    public static int binary_search_returnIdx(int target, int[] arr){  //O(log n)
-        int left = 0;
-        int right = arr.length-1;
-        boolean isFound = false;
-        while(left<=right && !isFound){
-            int mid = (left+right)/2;  //remember to sum!!
-            if(arr[mid] == target) {
-                isFound = true;
+    static int binarySearch(int[] K, int q) {
+        int left = 0, right = K.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (K[mid] == q)
                 return mid;
-            }
-            else if(arr[mid]<target) left= mid+1;
-            else right=mid-1;
+            else if (K[mid] < q)
+                left = mid + 1;
+            else
+                right = mid - 1;
         }
         return -1;
     }
-
 }

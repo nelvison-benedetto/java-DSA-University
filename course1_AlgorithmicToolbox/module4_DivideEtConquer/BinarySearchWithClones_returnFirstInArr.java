@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class BinarySearchWithDuplicates {
+public class BinarySearchWithClones_returnFirstInArr {
     public static void main(String[] args) {
         //in input una sequenza di numeri(anche cloni) anche integer q.
         //trova l'index dello slot nella sequenza dove si trova il PRIMO q esistente, return -1 se non esiste.s
