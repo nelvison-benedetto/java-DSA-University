@@ -17,6 +17,7 @@ public class MaximumValueLoot {
         //puoi prendere frazioni di obj 0<=f_i<=1, non solo interi
         //vuoi massimizzare il valore dello zaino
 
+
         // Scanner input = new Scanner(System.in);  //solution naive AI
         // int n = input.nextInt();
         // double W = input.nextDouble();
@@ -38,48 +39,7 @@ public class MaximumValueLoot {
         // }
         // System.out.printf("%.4f\n", totalValue);
         // input.close();
-    
     }
-
-    //PERFECT SOLUTION!!!
-    static class Item {
-        int value;
-        int weight;
-        Item(int value, int weight){
-            this.value = value;
-            this.weight = weight;
-        }
-        // valore per unità di peso
-        double valuePerWeight(){
-            return (double) value / weight;
-        }
-    }
-    public static double getMaxLootValue(int ncouples, int capacity, int[] weights, int[] values){
-        List<Item> items = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            items.add( new Item(values[i], weights[i]) ); // Costruisci la lista di oggetti
-        }  
-        //ora hai una list di Items, in cui per ognuno puoi call valuePerWeight per ottenere il suo rapporto value/weight
-        //Ordina per valore/peso decrescente
-        items.sort((a, b) -> Double.compare(b.valuePerWeight(), a.valuePerWeight()));  //ordina gli items desc per il loro rapporto value/weight
-        double totalValue = 0.0;
-        double currentWeight = 0.0;
-        for(Item item : items){
-            if (currentWeight + item.weight <= capacity) {
-                //prendiamo tutto l'obj
-                totalValue += item.value;
-                currentWeight += item.weight;
-            } else {
-                //prendiamo solo una % dell'obj
-                double remaining = capacity - currentWeight;
-                double fraction = remaining / item.weight;
-                totalValue += item.value * fraction;
-                break; // lo zaino ora è full ok!!
-            }
-        }
-        return totalValue;
-    }
-
 
     // public static double getMaxLootValue(int ncouples, int capacity, int[] weights, int[] values){  //WRONG(not perfect direction) non ultimato
     //     //gli items sono limitati, e puoi prender anche e.g. 1/3 di un item.
@@ -142,5 +102,45 @@ public class MaximumValueLoot {
     //     result.add(sortedWeights);
     //     return result;
     // }
+
+
+    //PERFECT SOLUTION!!!
+    static class Item {
+        int value;
+        int weight;
+        Item(int value, int weight){
+            this.value = value;
+            this.weight = weight;
+        }
+        double valuePerWeight(){          // valore per unità di peso
+            return (double) value / weight;
+        }
+    }
+    public static double getMaxLootValue(int ncouples, int capacity, int[] weights, int[] values){
+        List<Item> items = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            items.add( new Item(values[i], weights[i]) ); // Costruisci la lista di oggetti
+        }  
+        //ora hai una list di Items, in cui per ognuno puoi call valuePerWeight per ottenere il suo rapporto value/weight
+        //Ordina per valore/peso decrescente
+        items.sort((a, b) -> Double.compare(b.valuePerWeight(), a.valuePerWeight()));  //ordina gli items desc per il loro rapporto value/weight
+        double totalValue = 0.0;
+        double currentWeight = 0.0;
+        for(Item item : items){
+            if (currentWeight + item.weight <= capacity) {
+                //prendiamo tutto l'obj
+                totalValue += item.value;
+                currentWeight += item.weight;
+            } else {
+                //prendiamo solo una % dell'obj
+                double remaining = capacity - currentWeight;
+                double fraction = remaining / item.weight;
+                totalValue += item.value * fraction;
+                break; // lo zaino ora è full ok!!
+            }
+        }
+        return totalValue;
+    }
+
 
 }

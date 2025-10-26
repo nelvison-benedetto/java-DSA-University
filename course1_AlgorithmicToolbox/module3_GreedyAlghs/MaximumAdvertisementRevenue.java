@@ -43,7 +43,7 @@ public class MaximumAdvertisementRevenue {
         //è un greedy algh xk prendi la coppia piu high, poi la penultima coppia high, e cosi via
         Arrays.sort(insertionistsprice);  
         Arrays.sort(clicks);
-        //posso anche non ordinare decrescente, e leggere nel for() dalla end->start
+        //here non ordino desc, basta che leggo nel for() end->start
         int tot = 0;
         for(int i=totspaces-1; i>=0; i--){
             tot+= insertionistsprice[i]*clicks[i];

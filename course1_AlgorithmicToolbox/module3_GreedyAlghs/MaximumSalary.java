@@ -7,26 +7,21 @@ public class MaximumSalary {
         //strategy: definisci un ordinamento personalizzato per due numeri x e y->confronta le due concatenazioni xy vs yx
            //->se xy > yx allora x dovrebbe precedere y nell’ordine finale->quando li hai ordinati tutti allora basta concatenarli all
 
-        Scanner input = new Scanner(System.in);
-        int n = input.nextInt();
-        String[] numbers = new String[n];
-
-        for (int i = 0; i < n; i++) {
-            numbers[i] = input.next();
-        }
+        //PERFECT SOLUTION!!!  O(n L log n) (L=lunghezza media delle strs)
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        String[] nums = new String[n];
+        for( int i=0; i<n; i++ ) nums[i] = in.next();
         //ordinamento personalizzato
-        Arrays.sort(numbers, (a, b) -> (b + a).compareTo(a + b));
+        Arrays.sort(nums, (a, b) -> (b + a).compareTo(a + b));
         //concatenazione finale
-        StringBuilder result = new StringBuilder();
-        for (String num : numbers) {
-            result.append(num);
-        }
-        //gestione caso in cui tutti siano zeri
-        if (result.charAt(0) == '0') {
-            System.out.println("0");
-        } else {
-            System.out.println(result.toString());
-        }
-        input.close();
+        StringBuilder sb = new StringBuilder();
+        for (String num : nums) sb.append(num);
+        String res = sb.toString();
+        //se tutti i numeri sono "0"
+        if (result.charAt(0) == '0') res = "0";
+        System.out.println(res);
+        in.close();
     }
+    
 }

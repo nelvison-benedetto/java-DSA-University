@@ -46,10 +46,9 @@ public class CollectingSignatures {
         // input.close();
     }
 
+    //PERFECT SOLUTION!!! o(log n)
     public static int[] collectSignatures(int[][] segments){
-
-        //PERFECT SOLUTION!!! o(log n)
-        Arrays.sort(segments, Comparator.comparingInt(a -> a[1]));  //ordina ASC per estremita dx del segmento
+        Arrays.sort(segments, Comparator.comparingInt(a -> a[1]));  //ordina asc per estremita dx del segmento
         List<Integer> points = new ArrayList<>();
         int lastPoint = Integer.MIN_VALUE;
         for(int[] segment : segments){
@@ -61,7 +60,6 @@ public class CollectingSignatures {
             }
         }
         return points;
-
     }
 
 }
