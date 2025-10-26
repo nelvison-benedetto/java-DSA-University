@@ -288,29 +288,19 @@ public class SplayTree_inRopeProblem {
         return v == null ? 0 : v.size;
     }
     static Vertex find(Vertex v, int index) {  //trova node(quindi anche il suo char) in index-esimo carattere
+        //find è scritto con indici 1-baseds
         if( v == null ) return null;
         int leftSize = getSize( v.left );
-        if( index == leftSize + 1 )
+        if( index == leftSize + 1 ) //se il nodo corrente v contiene il index-esimo carattere: allora Splay(v) e lo restituisce.
             return splay(v);
-        else if( index < leftSize + 1 )
+        else if( index < leftSize + 1 )  //cerca ricorsivamente a sinistra
             return find( v.left, index );
-        else
+        else  //scende a destra sottraendo leftSize+1
             return find( v.right, index - leftSize - 1 );
     }
-    static VertexPair split( Vertex root, int index ){
-        if( root == null ) return new VertexPair(null, null);
-        if( index == 0 ) return new VertexPair(null, root);
-        if( index >= getSize(root) ) return new VertexPair(root, null);
-        Vertex right = find(root, index + 1);
-        Vertex left = right.left;
-        right.left = null;
-        if( left != null ) left.parent = null;
-        update(left);
-        update(right);
-        return new VertexPair( left, right );
-    }
-    
     static void process( int i, int j, int k ){  //process(cut and paste)
+        //rimuovere la sottostringa che va da i a j (inclusi) dalla stringa e reinserirla prima della posizione k (o nella posizione definita da k in base alla convenzione)
+        //TODO 
         // Step 1: cut [i..j]
         VertexPair leftMiddle = split( root, i );
         Vertex left = leftMiddle.left;
@@ -323,6 +313,23 @@ public class SplayTree_inRopeProblem {
         VertexPair insertPair = split( root, k );
         root = merge( merge( insertPair.left, middle ), insertPair.right );
     }
+    static VertexPair split( Vertex root, int index ){
+        if( root == null ) return new VertexPair(null, null);  //se tree è vuoto return 2 alberi vuoti
+        if( index == 0 ) return new VertexPair(null, root);  //se index == 0, left è vuoto (primi 0 caratteri), right è tutto
+        if( index >= getSize(root) ) return new VertexPair(root, null);  //se index >= dimensione, left è tutto, right è vuoto
+        Vertex right = find(root, index + 1);  
+          //chiamo find con index+1 (1-based). Questo porta in radice il nodo che contiene il carattere in posizione index+1.
+          //Dopo lo splay, quel nodo sarà radice ed avrà un sottoalbero sinistro che contiene esattamente i primi index caratteri!!
+        Vertex left = right.left;  //salva il sottoalbero sinistro (i primi index caratteri)
+        right.left = null;  //salva il sottoalbero sinistro (i primi index caratteri)
+        if( left != null ) left.parent = null;  //rimuove il puntatore al genitore del sottoalbero sinistro
+        update(left);  //aggiorna le informazioni (size e parent) del nodo coinvolto
+        update(right);  //aggiorna le informazioni (size e parent) del nodo coinvolto
+        return new VertexPair( left, right );  //ritorna la coppia: left contiene i primi index caratteri, right il resto.
+        //split(root, index) restituisce due alberi: il primo con esattamente i primi index caratteri (quindi index qui è il numero di caratteri da mettere a sinistra)
+        //split index è 0-based come conteggio di elementi, non come posizione 1-based — è il numero di elementi nella parte sinistra
+    }
+
     static void print( Vertex v, StringBuilder sb ){  //in-order traversal print, get res str
         if( v == null ) return;
         print(v.left, sb);
