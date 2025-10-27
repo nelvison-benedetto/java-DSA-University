@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class BinarySearchWithClones_returnFirstInArr {
+public class BinarySearchwClones_getFirstOrdered {
     public static void main(String[] args) {
         //in input una sequenza di numeri(anche cloni) anche integer q.
         //trova l'index dello slot nella sequenza dove si trova il PRIMO q esistente, return -1 se non esiste.s
@@ -40,7 +40,7 @@ public class BinarySearchWithClones_returnFirstInArr {
     // }
 
 
-    //PERFECT SOLUTION 95% by me!!
+    //PERFECT SOLUTION!!!
     public static int[] findFirstOccurrences( int[] numsToFind, int[] sortedArr ){
          //sortedArr è order ascendente, se target num ha piu cloni in sortedArr return solo idx primo
          int[] res = new int[numsToFind.length];
@@ -62,7 +62,7 @@ public class BinarySearchWithClones_returnFirstInArr {
                 // }
                 // return mid;
                 res = mid;
-                right= mid-1; //🔥continua ad usare divideetimper
+                right= mid-1; //🔥🔥continua ad usare divideetimpera per trovare target item piu a sx possibile e ovveride res!!!
             }
             else if(arr[mid]<target) left=mid+1;
             else right=mid-1;

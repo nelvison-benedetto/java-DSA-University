@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class MajorityElement {
+public class alghBoyerMoore_getMajorityElementInArr {
     public static void main(String[] args) {
         //Input: A sequence of n integers.
         //Output: 1, if there is an element that is repeated more than n/2 times, and 0 otherwise. 
@@ -43,18 +43,40 @@ public class MajorityElement {
     //     return count > arr.length / 2;
     // }
 
-    //PERFECT SOLUTION!!!semplicemente sort e poi fai un For e count quanti sono ==sequence[n/2], infine se count>n/2 allora return 1
-    public static int getCheckMajorityItemExists(int[] sequence){ //O(n log n)
-        //return 1 se c'è 1 item che ha cloni >sequence/2, altrimenti 0.
-        Arrays.sort(sequence);  //O(n log n)
-        int n = sequence.length;
-        int count =0;
-        //int candidate = sequence[n/2];  //possibile num most common
-        for(int item : sequence){  //O(n)
-            if(item==sequence[n/2]) count++;
+    //BAD semplicemente sort e poi fai un For e count quanti sono ==sequence[n/2], infine se count>n/2 allora return 1
+    // public static int getCheckMajorityItemExists(int[] sequence){ //O(n log n)
+    //     //return 1 se c'è 1 item che ha cloni >sequence/2, altrimenti 0.
+    //     Arrays.sort(sequence);  //O(n log n)
+    //     int n = sequence.length;
+    //     int count =0;
+    //     //int candidate = sequence[n/2];  //possibile num most common
+    //     for(int item : sequence){  //O(n)
+    //         if(item==sequence[n/2]) count++;
+    //     }
+    //     return count > n/2? 1 : 0;
+    // }
+
+
+    //PERFECT SOLUTION!!! O(n)
+    //output return 1 if there is an element that is repeated more than n/2 times, and 0 otherwise. use Boyer–Moore Majority Vote Algorithm
+    public static int getCheckMajorityItemExistsOK(int[] sequence){ 
+        // 1️⃣ Trova candidato potenziale (Boyer-Moore)
+        Integer candidate = null;
+        int count = 0;
+        for( int num : sequence ){
+            if( count==0 )
+                candidate = num;  //cambi candidato
+            count += ( num==candidate ) ? 1 : -1; //se troviamo un clone allora +1, altrimenti “annulliamo” un’apparizione del candidato contro un elemento diverso
         }
-        return count > n/2? 1 : 0;
+        //al termine del cycle solo un elemento con frequenza > n/2 può sopravvivere a tutti questi annullamenti.
+        //check se è davvero maggioritario
+        count = 0;
+        for( int num : sequence ) //ricontiamo le occorrenze del candidate per essere sicuri che compaia più di metà volte.
+            if( num==candidate ) count++;
+        return count > sequence.length / 2 ? 1 : 0;
     }
+
+
 
     // public static int getCheckMajorityItemExists(int[] sequence){  //WRONG(not perfect direction), solution not correct xk e.g.[2222333888] pensa di si perche 3==3==3 ma in realta 2 è better, e problemi sui bordi
     //     //return 1 se c'è 1 item che ha cloni >sequence/2, altrimenti 0.
