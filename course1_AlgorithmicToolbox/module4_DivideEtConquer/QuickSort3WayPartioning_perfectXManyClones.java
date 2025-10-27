@@ -53,7 +53,7 @@ public class QuickSort3WayPartioning_perfectXManyClones {
     //     arr[j] = temp;
     // }
 
-    //PERFECT SOLUTION!!!  O(n log n)
+    //PERFECT SOLUTION!!!  O(n log n)  //TODO understand better
     //quick_sort normale esplode con molti cloness
     //ordina arr in asc, ma usando version di randomize_quick_sort che rimane in O(n log n) anche con clones.
     //semplicmeente usiamo 3 arr: 1 x <mid, 1==mid, 1 >mid. use tech problem Dutch National Flag x 3way partitioning + pivot random.
