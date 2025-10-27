@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class SortedArrayMultipleSearch {
+public class BinarySearch {
     // public static void main(String[] args) {
         //hai due array: K = array ordinato di n interi distinti e Q = array di m query
         //per ogni elemento q in Q, devi verificare se esiste in K. Se sì, restituisci l’indice in K, altrimenti -1.
