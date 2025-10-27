@@ -65,48 +65,42 @@ public class SortedArrayMultipleSearch {
 
     //PERFECT SOLUTION!!!
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader( new InputStreamReader(System.in) );
         StringTokenizer st;
-
-        // 1️⃣ Leggi n e array K
-        int n = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
+        //leggi n e array K
+        int n = Integer.parseInt( br.readLine() );
+        st = new StringTokenizer( br.readLine() );
         int[] K = new int[n];
-        for (int i = 0; i < n; i++) {
-            K[i] = Integer.parseInt(st.nextToken());
+        for( int i=0; i<n; i++ ){
+            K[i] = Integer.parseInt( st.nextToken() );  //build staticarr K
         }
-
-        // 2️⃣ Leggi m e array Q
-        int m = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
+        //leggi m e array Q
+        int m = Integer.parseInt( br.readLine() );
+        st = new StringTokenizer( br.readLine() );
         int[] Q = new int[m];
-        for (int i = 0; i < m; i++) {
-            Q[i] = Integer.parseInt(st.nextToken());
+        for( int i=0; i<m; i++ ){
+            Q[i] = Integer.parseInt(st.nextToken());  //build staticarr Q
         }
-
-        // 3️⃣ Usa StringBuilder per costruire output efficiente
         StringBuilder sb = new StringBuilder();
-
-        // 4️⃣ Per ogni query, cerca in K
-        for (int q : Q) {
-            int res = binarySearch(K, q);
+        for( int q : Q ){  //per ogni query cerca in K
+            int res = binarySearch(K, q);  //get idx item target se esiste altrimenti get -1.
             sb.append(res).append(" ");
         }
-
-        // 5️⃣ Stampa risultato finale
-        System.out.println(sb.toString().trim());
+        System.out.println( sb.toString().trim() );
     }
-    static int binarySearch(int[] K, int q) {
+    static int binarySearch( int[] K, int q ){
         int left = 0, right = K.length - 1;
-        while (left <= right) {
+        while( left<=right ){
             int mid = (left + right) / 2;
-            if (K[mid] == q)
+            if( K[mid]==q )
                 return mid;
-            else if (K[mid] < q)
+            else if( K[mid]<q )
                 left = mid + 1;
             else
                 right = mid - 1;
         }
         return -1;
     }
+
+
 }
