@@ -24,7 +24,7 @@ public class SlidingWindowMaximum {
     //     maxSlidingWindowNaive(A, w);
     // }
 
-    //PERFECT SOLUTION!!! O(n)
+    //PERFECT SOLUTION!!! O(n) 
     public static int[] slidingWindowMaximum(int n, int[] array, int m){  //array is ordered descending, n is array.length, m is windows length
         // per ogni windows voglio salvare il max item in slot in arr result
         if( array==null || n==0 || m==0 || m>n ) return new int[0];
