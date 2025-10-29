@@ -54,9 +54,9 @@ public class QuickSort3WayPartioning_perfectXManyClones {
     // }
 
     //PERFECT SOLUTION!!!  O(n log n)  //TODO understand better
-    //quick_sort normale esplode con molti cloness
+    //quick_sort classico esplode con molti cloness, here versione più  ROBUSTA e AVANZATA del QuickSort classico: Randomized QuickSort con 3-way partitioning (a.k.a. Dutch National Flag algorithm)
     //ordina arr in asc, ma usando version di randomize_quick_sort che rimane in O(n log n) anche con clones.
-    //semplicmeente usiamo 3 arr: 1 x <mid, 1==mid, 1 >mid. use tech problem Dutch National Flag x 3way partitioning + pivot random.
+    //semplicmente usiamo 3 arr: 1 x <mid, 1==mid, 1 >mid. use tech problem Dutch National Flag x 3way partitioning + pivot random.
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         int n = input.nextInt();
