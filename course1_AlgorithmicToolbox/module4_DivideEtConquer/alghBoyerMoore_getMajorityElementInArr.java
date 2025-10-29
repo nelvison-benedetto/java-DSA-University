@@ -58,7 +58,8 @@ public class alghBoyerMoore_getMajorityElementInArr {
 
 
     //PERFECT SOLUTION!!! O(n)
-    //output return 1 if there is an element that is repeated more than n/2 times, and 0 otherwise. use Boyer–Moore Majority Vote Algorithm
+    //output return 1 if there is an element that is repeated more than n/2 times, and 0 otherwise. 
+    //🔥🔥use Boyer–Moore Majority Vote Algorithm
     public static int getCheckMajorityItemExistsOK(int[] sequence){ 
         // 1️⃣ Trova candidato potenziale (Boyer-Moore)
         Integer candidate = null;
