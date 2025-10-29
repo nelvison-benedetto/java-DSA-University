@@ -13,13 +13,13 @@ public class MaximumSalary {
         String[] nums = new String[n];
         for( int i=0; i<n; i++ ) nums[i] = in.next();
         //ordinamento personalizzato
-        Arrays.sort(nums, (a, b) -> (b + a).compareTo(a + b));
+        Arrays.sort(nums, (a, b) -> (b + a).compareTo(a + b));  //x desc order, se (b+a) è maggiore il sort metterà b prima di a
         //concatenazione finale
         StringBuilder sb = new StringBuilder();
         for (String num : nums) sb.append(num);
         String res = sb.toString();
         //se tutti i numeri sono "0"
-        if (result.charAt(0) == '0') res = "0";
+        if (res.charAt(0) == '0') res = "0";
         System.out.println(res);
         in.close();
     }

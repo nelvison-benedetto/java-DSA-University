@@ -73,7 +73,7 @@ public class alghBoyerMoore_getMajorityElementInArr {
         count = 0;
         for( int num : sequence ) //ricontiamo le occorrenze del candidate per essere sicuri che compaia più di metà volte.
             if( num==candidate ) count++;
-        return count > sequence.length / 2 ? 1 : 0;
+        return count > sequence.length / 2 ?  1 : 0;
     }
 
 
