@@ -61,39 +61,19 @@ public class alghBoyerMoore_getMajorityElementInArr {
     //output return 1 if there is an element that is repeated more than n/2 times, and 0 otherwise. 
     //🔥🔥use Boyer–Moore Majority Vote Algorithm
     public static int getCheckMajorityItemExistsOK(int[] sequence){ 
-        // 1️⃣ Trova candidato potenziale (Boyer-Moore)
-        Integer candidate = null;
-        int count = 0;
+        Integer candidate = null;  //potenziale item maggioritario trovato (tramite il processo di eliminazione)
+        int count = 0;  //misura la 'forza' del canditato corrente, quando scende a 0 perdiamo il candidato e possiamo sceglierne un'altro
+        //rappresenta il numero relativo di occorrenze del candidato rispetto agli elementi che lo 'annullano'. Se esiste un vero maggioritario (> n/2) questo sarà il candidato dopo this for.
         for( int num : sequence ){
             if( count==0 )
-                candidate = num;  //cambi candidato
-            count += ( num==candidate ) ? 1 : -1; //se troviamo un clone allora +1, altrimenti “annulliamo” un’apparizione del candidato contro un elemento diverso
+                candidate = num;  //change candidato
+            count += ( num==candidate ) ? 1 : -1;
         }
-        //al termine del cycle solo un elemento con frequenza > n/2 può sopravvivere a tutti questi annullamenti.
-        //check se è davvero maggioritario
+        //check xk se non esiste un vero cadidato maggioritario (>n/2), here candidate puo essere qualsiasi valore.
         count = 0;
-        for( int num : sequence ) //ricontiamo le occorrenze del candidate per essere sicuri che compaia più di metà volte.
+        for( int num : sequence )
             if( num==candidate ) count++;
-        return count > sequence.length / 2 ?  1 : 0;
+        return count > sequence.length/2 ?  1 : 0;
     }
-
-
-
-    // public static int getCheckMajorityItemExists(int[] sequence){  //WRONG(not perfect direction), solution not correct xk e.g.[2222333888] pensa di si perche 3==3==3 ma in realta 2 è better, e problemi sui bordi
-    //     //return 1 se c'è 1 item che ha cloni >sequence/2, altrimenti 0.
-    //     int n = sequence.length;
-    //     Arrays.sort(sequence);
-    //     int mid = n/2;
-    //     // if(n%2==0){
-    //     //     if(sequence[mid]==sequence[mid-1]) return 1;   //sequence[mid] sarebbe proprio il box che esce dalla meta esatta sx e va in sezione dx
-    //     //     else return 0;
-    //     // }
-    //     // else{
-    //     //     if(sequence[mid]==sequence[mid-1]) return 1;  //sequence[mid] qua è 
-    //     //     else return 0;
-    //     // }
-    //     if(sequence[mid]==sequence[mid-1] || sequence[mid]==sequence[mid+1]) return 1;  //se sequence è pari o dispari non cambia logica
-    //     else return 0;
-    // }
 
 }
