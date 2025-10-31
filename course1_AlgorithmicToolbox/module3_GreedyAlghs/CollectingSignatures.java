@@ -56,7 +56,7 @@ public class CollectingSignatures {
             int end = segment[1];
             if(lastPoint < start){  //se lastPoint non copre questo segmento, enter. altrimenti continua col next segment
                 lastPoint = end;       
-                points.add(lastPoint);
+                points.add(lastPoint);  //add il punto in piu necessario per cosi alla fine avere tutti i (meno possibili) punti per coprire tutti i segmenti
             }
         }
         return points;
