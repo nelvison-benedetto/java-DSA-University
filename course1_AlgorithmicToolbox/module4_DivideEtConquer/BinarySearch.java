@@ -67,7 +67,6 @@ public class BinarySearch {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader( new InputStreamReader(System.in) );
         StringTokenizer st;
-        //leggi n e array K
         int n = Integer.parseInt( br.readLine() );
         st = new StringTokenizer( br.readLine() );
         int[] K = new int[n];
@@ -83,7 +82,7 @@ public class BinarySearch {
         }
         StringBuilder sb = new StringBuilder();
         for( int q : Q ){  //per ogni query cerca in K
-            int res = binarySearch(K, q);  //get idx item target se esiste altrimenti get -1.
+            int res = binarySearch(K, q);  //get idx item target se esiste altrimenti get -1. applica binary search.
             sb.append(res).append(" ");
         }
         System.out.println( sb.toString().trim() );
