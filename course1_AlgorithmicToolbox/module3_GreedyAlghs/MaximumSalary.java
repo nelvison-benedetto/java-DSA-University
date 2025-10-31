@@ -18,8 +18,7 @@ public class MaximumSalary {
         StringBuilder sb = new StringBuilder();
         for (String num : nums) sb.append(num);
         String res = sb.toString();
-        //se tutti i numeri sono "0"
-        if (res.charAt(0) == '0') res = "0";
+        if (res.charAt(0) == '0') res = "0";  //caso in cui hai tutti i nums sono 0
         System.out.println(res);
         in.close();
     }
