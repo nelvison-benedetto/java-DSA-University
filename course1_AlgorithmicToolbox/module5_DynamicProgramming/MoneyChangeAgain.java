@@ -2,11 +2,6 @@ import java.util.Scanner;
 
 public class MoneyChangeAgain {
     public static void main(String[] args) {
-        //abbiamo a disposizione monete di valore 1, 3 e 4
-        //dato un valore money, dobbiamo calcolare il numero minimo di monete necessarie per formarlo.
-        //hint: la strategia greedy (prendere sempre la moneta più grande che non supera il resto) non funziona in questo caso,
-        //xk e.g. money = 6, greedy → 4 + 1 + 1 = 3 monete, ma la soluzione ottimale è 3 + 3 = 2 monete !
-
         // Scanner input = new Scanner(System.in);  //solution naive by AI
         // int money = input.nextInt();
         // input.close();  
@@ -22,7 +17,12 @@ public class MoneyChangeAgain {
         // System.out.println(dp[money]);
     }
 
-    //PERFCECT SOLUTION!!!
+    //abbiamo a disposizione monete di valore 1, 3 e 4
+    //dato un valore money, dobbiamo calcolare il numero minimo di monete necessarie per formarlo.
+    //hint: la strategia greedy (prendere sempre la moneta più grande che non supera il resto) non funziona in questo caso,
+    //xk e.g. money = 6, greedy → 4 + 1 + 1 = 3 monete, ma la soluzione ottimale è 3 + 3 = 2 monete !
+
+    //PERFECT SOLUTION!!!
     public static int calculateMinCoinsBestMethod(int money){
         //e.g.money=6, greedy → 4 + 1 + 1 = 3 monete, ma la soluzione ottimale è 3 + 3 = 2 monete !
         //minCoins[6]=2 cioe per fare money 6 servono 2 monete
