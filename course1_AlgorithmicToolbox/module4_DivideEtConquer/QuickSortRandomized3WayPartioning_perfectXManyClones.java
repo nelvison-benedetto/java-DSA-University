@@ -55,8 +55,7 @@ public class QuickSortRandomized3WayPartioning_perfectXManyClones {
 
     //PERFECT SOLUTION!!!  O(n log n)
     //advanced quick_sort: Randomized QuickSort con 3-way partitioning (Dutch National Flag)
-    //non esplode con molti clones
-    //semplicmente usiamo 3 arr: 1 x <mid, 1==mid, 1 >mid. use tech problem Dutch National Flag x 3way partitioning + pivot random.
+    //O(n log n), è in-place, non-stabile, 1/1M possibilita si StackOverflow. estremamente efficente con clones, grazie a pivot random hai altissime prob che: 1/3 degli item vadano a sx, 1/3 degli item vadano a dx, 1/3 degli item vadano in centro.
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         int n = input.nextInt();
